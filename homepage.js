@@ -27,7 +27,7 @@ function Homepage() {
         labels: labels,
         datasets: [{
           label: 'Water Level (meters)',
-          data: [12.5, 13.2, 13.8, 14.5, 15.0, 15.5, 16.0],
+          data: [12.5, 13.2, 20.8, 25.5, 20.0, 18.5, 16.0],
           borderColor: 'blue',
           fill: false,
           tension: 0.1
@@ -166,6 +166,26 @@ function Homepage() {
               <DateTimeDisplay />
             </div>
           </div>
+          <div className="speedmeter">
+          <div className="speedometer-container">
+            <div className="safe"><p>Safe</p></div>
+            <div className="hr"><div className="dot"></div></div>
+                  <div><svg className="speedometer" viewBox="0 0 100 50">
+                    <defs>
+                      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="13%" style={{ stopColor: 'green' }}/>
+                        <stop offset="56%" style={{ stopColor: 'yellow' }}/>
+                        <stop offset="100%" style={{ stopColor: 'red' }}/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,50 A50,50 0 0,1 100,50" fill="url(#grad)" />
+                    <path className="needle" d="M50,50 L50,10" />
+                  </svg></div>
+            <div className="danger"><p>Danger</p></div>
+
+            </div>
+            </div>
+
         </div>
       </div>
     </div>
