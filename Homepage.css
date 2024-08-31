@@ -125,3 +125,68 @@
   background-color: #000000;
   color: #ffffff;
 } */
+.speedometer
+{
+   width: 150px;
+   height: 150px;
+}
+.speedometer-container
+{
+  position: relative;
+
+}
+.speedometer-container .safe p, .danger p
+{
+
+   color: rgb(53, 199, 5);
+   font-size: 20px;
+   position: absolute;
+font-weight: 700;
+top: 90px;
+   left: -49px;
+}
+
+.danger p
+{
+  color: red;
+font-weight: 700;
+  left: 160px;
+}
+.speedmeter
+{
+  position:absolute;
+  top: -9px;
+  right: 18pc;
+}
+.hr
+{
+  /* background-image: url('dd.png'); */
+  background-color: black;
+  width: 70px;
+  height:8px;
+  position: absolute;
+  transform: rotate(120deg);
+  margin-top:80px;
+  margin-left: 55px;
+  /* position: relative; */
+  border-radius: 500px;
+}
+.hr .dot
+{
+  background-color: black;
+  width: 20px;
+  height: 20px;
+  border-radius:50%;
+  position: absolute;
+    bottom: -7px;
+  left: 55px;
+}
+/* .hr::after
+{
+  content: '';
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+
+} */
