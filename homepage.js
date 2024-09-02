@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer } from 'react-leaflet';
 import Chart from 'chart.js/auto';
 import "./Homepage.css";
@@ -6,7 +6,8 @@ import 'leaflet/dist/leaflet.css';
 import DateTimeDisplay from "./DateTimeDisplay";
 
 function Homepage() {
-  
+  const [alertInput, setAlertInput] = useState('');
+
   const defaultProps = {
     center: {
       lat: 10.99835602,
@@ -20,7 +21,7 @@ function Homepage() {
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');
     let chartInstance;
-  
+
     const createChart = () => {
       const labels = ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'];
       const data = {
@@ -33,7 +34,7 @@ function Homepage() {
           tension: 0.1
         }]
       };
-  
+
       const config = {
         type: 'line',
         data: data,
@@ -77,25 +78,30 @@ function Homepage() {
           }
         }
       };
-  
+
       chartInstance = new Chart(ctx, config);
     };
-  
+
     // Destroy the previous chart instance if it exists
     if (chartInstance) {
       chartInstance.destroy();
     }
-  
+
     createChart();
-  
-    
+
     return () => {
       if (chartInstance) {
         chartInstance.destroy();
       }
     };
   }, []);
-  
+
+  // Function to trigger the alert based on the input
+  const handleAlert = () => {
+    if (alertInput.toLowerCase() === 'yes') {
+      alert('Glacial Lake Outburst Chance');
+    }
+  };
 
   return (
     <div>
@@ -103,7 +109,9 @@ function Homepage() {
         <div className="dash-left">
           <h5>Dashboard</h5><br/>
           <p className="para">Line chart :</p><br/>
-          <div className="li"><canvas ref={chartRef} width="600" height="400" style={{ backgroundColor: 'black' }}></canvas></div>
+          <div className="li">
+            <canvas ref={chartRef} width="600" height="400" style={{ backgroundColor: 'black' }}></canvas>
+          </div>
           
           <div className="cirlc">
             <svg width="200" height="200" style={{ marginLeft: "10px" }}>
@@ -127,7 +135,7 @@ function Homepage() {
                 transform="rotate(-18 100 100)"
               />
               <text x="100" y="100" className="circle-text">
-                70%
+                80%
               </text>
             </svg>
             <br />
@@ -141,11 +149,11 @@ function Homepage() {
         <div className="dash-right">
           <div className="vul">
             <h3 className="hh">Vulnerability Status :</h3>
-            <p className="hhh">Moderate</p>
+            <p className="hhh">Danger</p>
           </div>
           <div className="vul">
             <h3 className="hh">ML Prediction:</h3>
-            <p className="hhh">Upper Indus lake might Outburst</p>
+            <p className="hhh">South Lhonak lake will Outburst</p>
           </div>
           <hr />
           <br />
@@ -167,25 +175,34 @@ function Homepage() {
             </div>
           </div>
           <div className="speedmeter">
-          <div className="speedometer-container">
-            <div className="safe"><p>Safe</p></div>
-            <div className="hr"><div className="dot"></div></div>
-                  <div><svg className="speedometer" viewBox="0 0 100 50">
-                    <defs>
-                      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="13%" style={{ stopColor: 'green' }}/>
-                        <stop offset="56%" style={{ stopColor: 'yellow' }}/>
-                        <stop offset="100%" style={{ stopColor: 'red' }}/>
-                      </linearGradient>
-                    </defs>
-                    <path d="M0,50 A50,50 0 0,1 100,50" fill="url(#grad)" />
-                    <path className="needle" d="M50,50 L50,10" />
-                  </svg></div>
-            <div className="danger"><p>Danger</p></div>
-
+            <div className="speedometer-container">
+              <div className="safe"><p>Safe</p></div>
+              <div className="hr"><div className="dot"></div></div>
+              <div>
+                <svg className="speedometer" viewBox="0 0 100 50">
+                  <defs>
+                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="13%" style={{ stopColor: 'green' }} />
+                      <stop offset="56%" style={{ stopColor: 'yellow' }} />
+                      <stop offset="100%" style={{ stopColor: 'red' }} />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,50 A50,50 0 0,1 100,50" fill="url(#grad)" />
+                  <path className="needle" d="M50,50 L50,10" />
+                </svg>
+              </div>
+              <div className="danger"><p>Danger</p></div>
             </div>
-            </div>
-
+          </div>
+          <div className="alert-section">
+            <input
+              type="text"
+              value={alertInput}
+              onChange={(e) => setAlertInput(e.target.value)}
+              placeholder="Enter 'yes' or 'no'"
+            />
+            <button onClick={handleAlert}>Check Alert</button>
+          </div>
         </div>
       </div>
     </div>
