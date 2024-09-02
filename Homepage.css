@@ -27,7 +27,7 @@
 {
   font-size: 20px;
   margin: 15px;
-  color: orange;
+  color: rgb(255, 38, 0);
 }
 .vul
 {
@@ -165,9 +165,9 @@ font-weight: 700;
   width: 70px;
   height:8px;
   position: absolute;
-  transform: rotate(120deg);
-  margin-top:80px;
-  margin-left: 55px;
+  transform: rotate(160deg);
+  margin-top:90px;
+  margin-left: 65px;
   /* position: relative; */
   border-radius: 500px;
 }
@@ -190,3 +190,33 @@ font-weight: 700;
   border-radius: 50%;
 
 } */
+.alert-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.alert-section input {
+  padding: 10px;
+  width: 200px;
+  border: 2px solid #444;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.alert-section button {
+  padding: 10px 20px;
+  border: 2px solid #444;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.alert-section button:hover {
+  background-color: #555;
+}
